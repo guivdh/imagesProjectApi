@@ -1,0 +1,23 @@
+{
+  "SUBMISSION": {
+    "PDF": {
+      "SUBMIT_BY": "Soumis par",
+      "SUBMISSION_DATE": "Date de soumission",
+      "YES": "Oui",
+      "NO": "Non",
+      "NOT_SPECIFIED": "Non précisé",
+      "ATTACHED_FILES": "pièce(s) jointe(s)",
+      "START_DATE": "Date de début",
+      "END_DATE": "Date de fin",
+      "DESCRIPTION": "Description",
+      "ACADEMIC_YEAR": "Année académique",
+      "TYPE": "Type",
+      "INSTITUTION": "Etablissement",
+      "DEGREE_NAME": "Intitulé du diplôme",
+      "UNI": "Université",
+      "UNIVERSITY": "Université",
+      "HEC": "Haute école",
+      "COLLEGE": "Haute école"
+    }
+  }
+}

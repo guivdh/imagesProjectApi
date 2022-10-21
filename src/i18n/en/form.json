@@ -1,0 +1,23 @@
+{
+  "SUBMISSION": {
+    "PDF": {
+      "SUBMIT_BY": "Submit by",
+      "SUBMISSION_DATE": "Submission date",
+      "YES": "Yes",
+      "NO": "No",
+      "NOT_SPECIFIED": "Not specified",
+      "ATTACHED_FILES": "attached file(s)",
+      "START_DATE": "Start date",
+      "END_DATE": "End date",
+      "DESCRIPTION": "Description",
+      "ACADEMIC_YEAR": "Academic year",
+      "TYPE": "Type",
+      "INSTITUTION": "Institution",
+      "DEGREE_NAME": "Degree name",
+      "UNI": "University",
+      "UNIVERSITY": "University",
+      "HEC": "College",
+      "COLLEGE": "College"
+    }
+  }
+}
