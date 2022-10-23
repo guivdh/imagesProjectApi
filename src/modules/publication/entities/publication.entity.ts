@@ -2,6 +2,7 @@ import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typ
 import {BaseEntity} from "../../../core/class/base-entity";
 import {User} from "../../user/entities/user.entity";
 import {Image} from "../../image/entities/image.entity";
+import { Establishment } from "../../establishment/entities/establishment.entity";
 
 @Entity('publication')
 export class Publication extends BaseEntity {
@@ -18,6 +19,10 @@ export class Publication extends BaseEntity {
     @ManyToOne(() => User)
     @JoinColumn({ name: 'userId' })
     user: User;
+
+    @ManyToOne(() => Establishment)
+    @JoinColumn({ name: 'establishmentId' })
+    establishment: Establishment;
 
     constructor(dto?: Partial<Publication>) {
         super();

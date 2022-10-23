@@ -10,7 +10,7 @@ export class Address extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: 'description', type: 'varchar', length: 255 })
+    @Column({ name: 'street', type: 'varchar', length: 255 })
     street: string;
 
     @ManyToOne(() => Country)

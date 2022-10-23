@@ -9,8 +9,11 @@ export class Establishment extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: 'description', type: 'varchar', length: 255 })
+    @Column({ name: 'name', type: 'varchar', length: 255 })
     name: string;
+
+    @Column({ name: 'description', type: 'varchar', length: 255 })
+    description: string;
 
     @ManyToOne(() => Image)
     @JoinColumn({ name: 'imageId' })
@@ -18,7 +21,7 @@ export class Establishment extends BaseEntity {
 
     @ManyToOne(() => User)
     @JoinColumn({ name: 'userId' })
-    user: User;
+    createdBy: User;
 
     @ManyToOne(() => Address)
     @JoinColumn({ name: 'addressId' })

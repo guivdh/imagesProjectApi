@@ -13,6 +13,6 @@ export class PublicationService extends RepositoryService<Publication> {
     }
 
     async getAll(): Promise<Publication[]> {
-        return this.repo.find();
+        return this.repo.find({relations: ['user', 'image', 'establishment']});
     }
 }
