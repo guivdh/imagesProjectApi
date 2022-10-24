@@ -1,9 +1,10 @@
-import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Body, Controller, Get, HttpStatus, Post } from "@nestjs/common";
+import {ApiConsumes, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {Body, Controller, Get, HttpStatus, Post, Res, Request, UseInterceptors, UploadedFile} from "@nestjs/common";
 import { Publication } from "../../publication/entities/publication.entity";
 import { EstablishmentService } from "../services/establishment.service";
 import { EstablishmentDTO } from "../dto/establishment.dto";
-import { UpdateUserDTO } from "../../user/dto/user/update-user.dto";
+import {CreateEstablishmentDTO} from "../dto/create-establishment.dto";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @ApiTags('establishments')
 @Controller({
@@ -22,9 +23,16 @@ export class EstablishmentController {
         return Publication.toDTOList(establishments, EstablishmentDTO);
     }
 
-    @Post()
+    /*@Post()
     @ApiResponse({ status: HttpStatus.OK })
-    async createOne(@Body() dto: any) {
-        console.log(dto);
+    async createOne(@Request() request: any) {
+        console.log(request.file);
+        console.log(request.body);
+    }
+*/
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('photo', { dest: './uploads' }))
+    uploadSingle(@UploadedFile() file) {
+        console.log(file);
     }
 }

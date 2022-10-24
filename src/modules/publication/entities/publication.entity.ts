@@ -9,6 +9,12 @@ export class Publication extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
+    @Column({ name: 'dishName', type: 'varchar', length: 255 })
+    dishName: string;
+
+    @Column({ name: 'dishType', type: 'varchar', length: 255, array: true })
+    dishType: string[];
+
     @Column({ name: 'description', type: 'text' })
     description: string;
 
