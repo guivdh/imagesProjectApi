@@ -7,6 +7,8 @@ import {Image} from "../../image/entities/image.entity";
 import {Address} from "../../address/entities/address.entity";
 
 export class CreateEstablishmentDTO {
+    @ApiProperty()
+    @IsNotEmpty()
     @Length(0, 255)
     name: string;
 
@@ -15,10 +17,12 @@ export class CreateEstablishmentDTO {
     description: string;
 
     @ApiProperty()
+    @IsNotEmpty()
     @Length(0, 255)
     street: string;
 
     @ApiProperty()
+    @IsNotEmpty()
     @Length(0, 255)
     country: string;
 
