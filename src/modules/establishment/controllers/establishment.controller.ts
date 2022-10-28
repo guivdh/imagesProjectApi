@@ -1,10 +1,15 @@
-import {ApiConsumes, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {Body, Controller, Get, HttpStatus, Post, Res, Request, UseInterceptors, UploadedFile} from "@nestjs/common";
-import { Publication } from "../../publication/entities/publication.entity";
-import { EstablishmentService } from "../services/establishment.service";
-import { EstablishmentDTO } from "../dto/establishment.dto";
+import {ApiResponse, ApiTags} from "@nestjs/swagger";
+import {Body, Controller, Get, HttpStatus, Post, UploadedFile, UseInterceptors} from "@nestjs/common";
+import {Publication} from "../../publication/entities/publication.entity";
+import {EstablishmentService} from "../services/establishment.service";
+import {EstablishmentDTO} from "../dto/establishment.dto";
 import {CreateEstablishmentDTO} from "../dto/create-establishment.dto";
 import {FileInterceptor} from "@nestjs/platform-express";
+import {diskStorage} from "multer";
+import {Image} from "../../image/entities/image.entity";
+import {ImageService} from "../../image/services/image.service";
+import {CountryService} from "../../country/services/country.service";
+import {Address} from "../../address/entities/address.entity";
 
 @ApiTags('establishments')
 @Controller({
@@ -12,7 +17,9 @@ import {FileInterceptor} from "@nestjs/platform-express";
 })
 export class EstablishmentController {
     constructor(
-      private establishmentService: EstablishmentService,
+        private establishmentService: EstablishmentService,
+        private imageService: ImageService,
+        private countryService: CountryService
     ) {
     }
 
@@ -30,9 +37,30 @@ export class EstablishmentController {
         console.log(request.body);
     }
 */
+
     @Post('upload')
-    @UseInterceptors(FileInterceptor('photo', { dest: './uploads' }))
-    uploadSingle(@UploadedFile() file) {
-        console.log(file);
+    @ApiResponse({status: HttpStatus.OK})
+    @UseInterceptors(FileInterceptor('establishment', {
+        storage: diskStorage({
+            destination: './public/',
+            filename: (req, file, cb) => {
+                // Generating a 32 random chars long string
+                const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+                //Calling the callback passing the random name generated with the original extension name
+                cb(null, `${randomName}.jpg`)
+            }
+        }),
+    }))
+    async uploadFile(@Body() dto: CreateEstablishmentDTO, @UploadedFile() file: Express.Multer.File) {
+        console.log(file)
+        dto.image = new Image()
+        dto.image.path = file.filename;
+        dto.image.label = 'establishment';
+        dto.address = new Address();
+        dto.address.street = dto.street;
+        dto.address.country = await this.countryService.findOneById(dto.country);
+        let establishment = this.establishmentService.create(dto);
+        return await this.establishmentService.save(establishment);
     }
+
 }

@@ -4,6 +4,8 @@ import {Establishment} from "./entities/establishment.entity";
 import {EstablishmentRepository} from "./repositories/establishment.repository";
 import {EstablishmentController} from "./controllers/establishment.controller";
 import {EstablishmentService} from "./services/establishment.service";
+import {ImageModule} from "../image/image.module";
+import {CountryModule} from "../country/country.module";
 
 @Module({
     imports: [
@@ -11,6 +13,8 @@ import {EstablishmentService} from "./services/establishment.service";
             Establishment,
             EstablishmentRepository
         ]),
+        ImageModule,
+        CountryModule
     ],
     controllers: [
         EstablishmentController

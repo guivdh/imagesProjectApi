@@ -8,5 +8,5 @@ export class ImageDTO {
 
   @ApiProperty()
   @DTOMapping()
-  content: string;
+  path: string;
 }

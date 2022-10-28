@@ -15,15 +15,15 @@ export class Establishment extends BaseEntity {
     @Column({ name: 'description', type: 'varchar', length: 255 })
     description: string;
 
-    @ManyToOne(() => Image)
+    @ManyToOne(() => Image, {cascade: true})
     @JoinColumn({ name: 'imageId' })
     image: Image;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, {cascade: true})
     @JoinColumn({ name: 'userId' })
     createdBy: User;
 
-    @ManyToOne(() => Address)
+    @ManyToOne(() => Address, {cascade: true})
     @JoinColumn({ name: 'addressId' })
     address: Address;
 

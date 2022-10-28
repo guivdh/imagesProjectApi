@@ -2,10 +2,11 @@ import {ApiProperty} from "@nestjs/swagger";
 import {DTOMapping} from "../../../core/decorators/mapping.decorator";
 import {ImageDTO} from "../../image/dto/image.dto";
 import {AddressDTO} from "../../address/dto/address.dto";
-import {IsNotEmpty, Length} from "class-validator";
+import {IsEmail, IsNotEmpty, Length} from "class-validator";
+import {Image} from "../../image/entities/image.entity";
+import {Address} from "../../address/entities/address.entity";
 
 export class CreateEstablishmentDTO {
-    @ApiProperty()
     @Length(0, 255)
     name: string;
 
@@ -15,14 +16,16 @@ export class CreateEstablishmentDTO {
 
     @ApiProperty()
     @Length(0, 255)
-    address: string;
+    street: string;
 
     @ApiProperty()
     @Length(0, 255)
     country: string;
 
     @ApiProperty()
-    @Length(0, 255)
-    image: string;
+    image: Image;
+
+    @ApiProperty()
+    address: Address;
 }
 

@@ -13,7 +13,7 @@ export class Address extends BaseEntity {
     @Column({ name: 'street', type: 'varchar', length: 255 })
     street: string;
 
-    @ManyToOne(() => Country)
+    @ManyToOne(() => Country, {cascade: true})
     @JoinColumn({ name: 'countryId' })
     country: Country;
 

@@ -14,9 +14,14 @@ import { EstablishmentModule } from "./modules/establishment/establishment.modul
 import { ImageModule } from "./modules/image/image.module";
 import { LikeModule } from "./modules/like/like.module";
 import { PublicationModule } from "./modules/publication/publication.module";
+import {ServeStaticModule} from "@nestjs/serve-static";
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../', 'public')
+    }),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.gmail.com',

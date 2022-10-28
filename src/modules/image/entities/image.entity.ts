@@ -6,11 +6,11 @@ export class Image extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({name: 'description', type: 'varchar', length: 255})
+    @Column({name: 'label', type: 'varchar', length: 255})
     label: string;
 
-    @Column({name: 'content', type: 'bytea'})
-    content: string;
+    @Column({name: 'path', type: 'varchar', length: 255})
+    path: string;
 
     constructor(dto?: Partial<Image>) {
         super();

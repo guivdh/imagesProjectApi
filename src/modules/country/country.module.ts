@@ -16,7 +16,7 @@ import {CountryService} from "./services/country.service";
         CountryController
     ],
     providers: [CountryService],
-    exports: [],
+    exports: [CountryService],
 })
 export class CountryModule {
 }
