@@ -1,5 +1,5 @@
 import {ApiResponse, ApiTags} from "@nestjs/swagger";
-import {Body, Controller, Get, HttpStatus, Post, UploadedFile, UseInterceptors} from "@nestjs/common";
+import { Body, Controller, Get, HttpStatus, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import {Publication} from "../../publication/entities/publication.entity";
 import {EstablishmentService} from "../services/establishment.service";
 import {EstablishmentDTO} from "../dto/establishment.dto";
@@ -10,6 +10,8 @@ import {Image} from "../../image/entities/image.entity";
 import {ImageService} from "../../image/services/image.service";
 import {CountryService} from "../../country/services/country.service";
 import {Address} from "../../address/entities/address.entity";
+import { LightEstablishmentDTO } from "../dto/light-establishment.dto";
+import { Establishment } from "../entities/establishment.entity";
 
 @ApiTags('establishments')
 @Controller({
@@ -27,7 +29,20 @@ export class EstablishmentController {
     @ApiResponse({status: 200, type: EstablishmentDTO, isArray: true})
     async getAll(): Promise<EstablishmentDTO[]> {
         const establishments = await this.establishmentService.getAll();
-        return Publication.toDTOList(establishments, EstablishmentDTO);
+        return Establishment.toDTOList(establishments, EstablishmentDTO);
+    }
+
+    @Get('light')
+    @ApiResponse({status: 200, type: LightEstablishmentDTO, isArray: true})
+    async getAllLight(): Promise<LightEstablishmentDTO[]> {
+        return await this.establishmentService.getAllLight();
+    }
+
+    @Get(':id')
+    @ApiResponse({status: 200, type: EstablishmentDTO})
+    async getOneById(@Param('id') id: string): Promise<EstablishmentDTO> {
+        const establishment = await this.establishmentService.findOneById(id, {relations: ['image', 'address']});
+        return Establishment.toDTO(establishment, EstablishmentDTO);
     }
 
     /*@Post()

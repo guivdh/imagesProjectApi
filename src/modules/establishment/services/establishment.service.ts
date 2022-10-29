@@ -23,4 +23,10 @@ export class EstablishmentService extends RepositoryService<Establishment> {
             return em.save(Establishment, establishment);
         });
     }
+
+  async getAllLight() {
+    return this.repo.createQueryBuilder('es')
+      .select(['es.id as id', 'es.name AS title'])
+      .getRawMany();
+  }
 }

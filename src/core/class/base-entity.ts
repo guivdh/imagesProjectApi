@@ -29,6 +29,10 @@ export abstract class BaseEntity {
     return dtoList;
   }
 
+  static toDTO<T>(entity: BaseEntity, dto: Type<T>, groups?: string | string[]): T {
+    return entity.toDTO(dto, groups);
+  }
+
   private static _createProperty(object: any, property: string, value: any, newObjectType: any) {
     if (!value) {
       return null;

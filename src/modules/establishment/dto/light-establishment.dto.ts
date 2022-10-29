@@ -3,20 +3,12 @@ import { DTOMapping } from "../../../core/decorators/mapping.decorator";
 import { ImageDTO } from "../../image/dto/image.dto";
 import { AddressDTO } from "../../address/dto/address.dto";
 
-export class EstablishmentDTO {
+export class LightEstablishmentDTO {
   @ApiProperty()
   @DTOMapping()
-  name: string;
+  id: string;
 
   @ApiProperty()
   @DTOMapping()
-  description: string;
-
-  @ApiProperty()
-  @DTOMapping({dtoOrEntity: ImageDTO})
-  image: ImageDTO;
-
-  @ApiProperty()
-  @DTOMapping({dtoOrEntity: AddressDTO})
-  address: AddressDTO;
+  title: string;
 }
