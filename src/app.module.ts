@@ -5,7 +5,6 @@ import { UserModule } from './modules/user/user.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { ParameterModule } from './modules/parameter/parameter.module';
-import {JwtModule} from "@nestjs/jwt";
 import { TicketModule } from "./modules/ticket/ticket.module";
 import { AddressModule } from "./modules/address/address.module";
 import { CommentModule } from "./modules/comment/comment.module";

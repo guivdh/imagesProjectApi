@@ -4,6 +4,7 @@ import {Publication} from "./entities/publication.entity";
 import {PublicationRepository} from "./repositories/publication.repository";
 import {PublicationController} from "./controllers/publication.controller";
 import {PublicationService} from "./services/publication.service";
+import {EstablishmentModule} from "../establishment/establishment.module";
 
 @Module({
     imports: [
@@ -11,6 +12,7 @@ import {PublicationService} from "./services/publication.service";
             Publication,
             PublicationRepository
         ]),
+        EstablishmentModule
     ],
     controllers: [
         PublicationController

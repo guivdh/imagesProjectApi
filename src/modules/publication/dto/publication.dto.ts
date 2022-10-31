@@ -10,6 +10,30 @@ export class PublicationDTO {
   description: string;
 
   @ApiProperty()
+  @DTOMapping()
+  dishName: string;
+
+  @ApiProperty()
+  @DTOMapping()
+  dishType: string;
+
+  @ApiProperty()
+  @DTOMapping()
+  taste: number;
+
+  @ApiProperty()
+  @DTOMapping()
+  presentation: number;
+
+  @ApiProperty()
+  @DTOMapping()
+  quantity: number;
+
+  @ApiProperty()
+  @DTOMapping()
+  price: number;
+
+  @ApiProperty()
   @DTOMapping({dtoOrEntity: ImageDTO})
   image: ImageDTO;
 

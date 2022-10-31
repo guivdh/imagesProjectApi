@@ -12,21 +12,33 @@ export class Publication extends BaseEntity {
     @Column({ name: 'dishName', type: 'varchar', length: 255 })
     dishName: string;
 
-    @Column({ name: 'dishType', type: 'varchar', length: 255, array: true })
-    dishType: string[];
+    @Column({ name: 'dishType', type: 'varchar', length: 255 })
+    dishType: string;
 
     @Column({ name: 'description', type: 'text' })
     description: string;
 
-    @ManyToOne(() => Image)
+    @Column({name: 'taste', type: 'numeric'})
+    taste: number;
+
+    @Column({name: 'presentation', type: 'numeric'})
+    presentation: number;
+
+    @Column({name: 'quantity', type: 'numeric'})
+    quantity: number;
+
+    @Column({name: 'price', type: 'numeric'})
+    price: number;
+
+    @ManyToOne(() => Image, {cascade: true})
     @JoinColumn({ name: 'imageId' })
     image: Image;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, {cascade: true})
     @JoinColumn({ name: 'userId' })
     user: User;
 
-    @ManyToOne(() => Establishment)
+    @ManyToOne(() => Establishment, {cascade: true})
     @JoinColumn({ name: 'establishmentId' })
     establishment: Establishment;
 

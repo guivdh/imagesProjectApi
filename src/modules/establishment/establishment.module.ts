@@ -20,7 +20,7 @@ import {CountryModule} from "../country/country.module";
         EstablishmentController
     ],
     providers: [EstablishmentService],
-    exports: [],
+    exports: [EstablishmentService],
 })
 export class EstablishmentModule {
 }
