@@ -4,6 +4,9 @@ import {Like} from "./entities/like.entity";
 import {LikeRepository} from "./repositories/like.repository";
 import {LikeController} from "./controllers/like.controller";
 import {LikeService} from "./services/like.service";
+import { PublicationService } from "../publication/services/publication.service";
+import { PublicationModule } from "../publication/publication.module";
+import { UserModule } from "../user/user.module";
 
 @Module({
     imports: [
@@ -11,14 +14,18 @@ import {LikeService} from "./services/like.service";
             Like,
             LikeRepository
         ]),
+      PublicationModule,
+      UserModule
     ],
     controllers: [
         LikeController
     ],
     providers: [
-        LikeService
+        LikeService,
     ],
-    exports: [],
+    exports: [
+      LikeService
+    ],
 })
 export class LikeModule {
 }

@@ -7,6 +7,10 @@ import { EstablishmentDTO } from "../../establishment/dto/establishment.dto";
 export class PublicationDTO {
   @ApiProperty()
   @DTOMapping()
+  id: string;
+
+  @ApiProperty()
+  @DTOMapping()
   description: string;
 
   @ApiProperty()
@@ -32,6 +36,10 @@ export class PublicationDTO {
   @ApiProperty()
   @DTOMapping()
   price: number;
+
+  @ApiProperty()
+  @DTOMapping()
+  isLike: boolean;
 
   @ApiProperty()
   @DTOMapping({dtoOrEntity: ImageDTO})

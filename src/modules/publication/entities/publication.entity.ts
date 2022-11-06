@@ -3,6 +3,7 @@ import {BaseEntity} from "../../../core/class/base-entity";
 import {User} from "../../user/entities/user.entity";
 import {Image} from "../../image/entities/image.entity";
 import { Establishment } from "../../establishment/entities/establishment.entity";
+import { Like } from "../../like/entities/like.entity";
 
 @Entity('publication')
 export class Publication extends BaseEntity {
@@ -41,6 +42,8 @@ export class Publication extends BaseEntity {
     @ManyToOne(() => Establishment, {cascade: true})
     @JoinColumn({ name: 'establishmentId' })
     establishment: Establishment;
+
+    isLike: boolean;
 
     constructor(dto?: Partial<Publication>) {
         super();
