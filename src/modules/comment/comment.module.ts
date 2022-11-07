@@ -4,6 +4,8 @@ import {Comment} from "./entities/comment.entity";
 import {CommentRepository} from "./repositories/comment.repository";
 import {CommentController} from "./controllers/comment.controller";
 import {CommentService} from "./services/comment.service";
+import {UserModule} from "../user/user.module";
+import {PublicationModule} from "../publication/publication.module";
 
 @Module({
     imports: [
@@ -11,6 +13,8 @@ import {CommentService} from "./services/comment.service";
             Comment,
             CommentRepository
         ]),
+      /*  UserModule,
+        PublicationModule*/
     ],
     controllers: [
         CommentController
