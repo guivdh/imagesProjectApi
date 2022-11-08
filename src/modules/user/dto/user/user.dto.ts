@@ -21,6 +21,10 @@ export class UserDTO extends SimpleUserDTO {
   isActive: boolean;
 
   @ApiProperty()
+  @DTOMapping()
+  pseudo: string;
+
+  @ApiProperty()
   @DTOMapping({ property: 'role' })
   role: RoleDTO;
 }

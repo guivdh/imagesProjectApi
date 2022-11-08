@@ -9,7 +9,7 @@ export class Comment extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: 'description', type: 'text' })
+    @Column({ name: 'comment', type: 'text' })
     comment: string;
 
     @ManyToOne(() => Publication)

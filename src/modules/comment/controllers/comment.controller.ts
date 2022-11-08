@@ -1,5 +1,5 @@
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Body, Controller, forwardRef, HttpCode, HttpStatus, Inject, Post } from "@nestjs/common";
+import {Body, Controller, forwardRef, Get, HttpCode, HttpStatus, Inject, Param, Post} from "@nestjs/common";
 import { LikeDTO } from "../../like/dto/like.dto";
 import { Like } from "../../like/entities/like.entity";
 import { CreateCommentDTO } from "../dto/create-comment.dto";
@@ -8,6 +8,9 @@ import { PublicationService } from "../../publication/services/publication.servi
 import { UserService } from "../../user/services/user.service";
 import { CommentService } from "../services/comment.service";
 import { LikeService } from "../../like/services/like.service";
+import {EstablishmentDTO} from "../../establishment/dto/establishment.dto";
+import {Establishment} from "../../establishment/entities/establishment.entity";
+import {CommentDTO} from "../dto/comment.dto";
 
 @ApiTags("comments")
 @Controller({
@@ -20,6 +23,13 @@ export class CommentController {
     private userService: UserService,
     private commentService: CommentService
   ) {
+  }
+
+  @Get('publication/:id')
+  @ApiResponse({status: 200, type: CommentDTO})
+  async getAllByPublication(@Param('id') id: string): Promise<CommentDTO[]> {
+    const comments = await this.commentService.findAll({where: {publication: id}, relations: ['publication', 'user']});
+    return Comment.toDTOList(comments, CommentDTO);
   }
 
   @Post()
