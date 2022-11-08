@@ -37,7 +37,13 @@ export class PublicationController {
     @Get()
     @ApiResponse({status: 200, type: PublicationDTO, isArray: true})
     async getAll(): Promise<PublicationDTO[]> {
-        const publications = await this.publicationService.getAll();
+        return await this.publicationService.getAllWithRatingAverage();
+    }
+
+    @Get('establishment/:id')
+    @ApiResponse({status: 200, type: PublicationDTO, isArray: true})
+    async getAllByEstablishment(@Param('id') id: string): Promise<PublicationDTO[]> {
+        const publications = await this.publicationService.findAll({where: {establishment: id}, relations: ['image', 'user']});
         return Publication.toDTOList(publications, PublicationDTO);
     }
 

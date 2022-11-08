@@ -15,4 +15,13 @@ export class PublicationService extends RepositoryService<Publication> {
     async getAll(): Promise<Publication[]> {
         return this.repo.find({relations: ['user', 'image', 'establishment']});
     }
+
+    async getAllWithRatingAverage() {
+        return this.repo.createQueryBuilder('p')
+          .select('(p.presentation + p.price + p.taste + p.quantity)', 'rating')
+          .addSelect('i.path', 'path')
+          .addSelect('p.id', 'id')
+          .leftJoin('p.image', 'i')
+          .getRawMany();
+    }
 }

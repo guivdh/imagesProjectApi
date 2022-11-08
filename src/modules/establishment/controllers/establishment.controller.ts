@@ -41,7 +41,7 @@ export class EstablishmentController {
     @Get(':id')
     @ApiResponse({status: 200, type: EstablishmentDTO})
     async getOneById(@Param('id') id: string): Promise<EstablishmentDTO> {
-        const establishment = await this.establishmentService.findOneById(id, {relations: ['image', 'address']});
+        const establishment = await this.establishmentService.findOneById(id, {relations: ['image', 'address', 'address.country']});
         return Establishment.toDTO(establishment, EstablishmentDTO);
     }
 
