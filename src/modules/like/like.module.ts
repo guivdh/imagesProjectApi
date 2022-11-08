@@ -1,5 +1,5 @@
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {Module} from '@nestjs/common';
+import { forwardRef, Module } from "@nestjs/common";
 import {Like} from "./entities/like.entity";
 import {LikeRepository} from "./repositories/like.repository";
 import {LikeController} from "./controllers/like.controller";
@@ -14,7 +14,7 @@ import { UserModule } from "../user/user.module";
             Like,
             LikeRepository
         ]),
-      PublicationModule,
+        forwardRef(() => PublicationModule),
       UserModule
     ],
     controllers: [

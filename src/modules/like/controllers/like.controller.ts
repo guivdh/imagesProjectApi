@@ -1,5 +1,5 @@
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
+import { Body, Controller, forwardRef, HttpCode, HttpStatus, Inject, Post } from "@nestjs/common";
 import { Roles } from "../../../core/decorators/role.decorator";
 import { RoleEnum } from "../../user/enums/role.enum";
 import { UpdateUserDTO } from "../../user/dto/user/update-user.dto";
@@ -16,6 +16,7 @@ import { UserService } from "../../user/services/user.service";
 })
 export class LikeController {
   constructor(
+    @Inject(forwardRef(() => LikeService))
     private likeService: LikeService,
     private publicationService: PublicationService,
     private userService: UserService
